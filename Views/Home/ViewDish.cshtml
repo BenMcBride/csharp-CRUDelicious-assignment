@@ -1,0 +1,40 @@
+@model Dish
+<div class="container mt-3">
+  <div class="text-center border rounded">
+    <h1 class="display-4">@Model.Name</h1>
+  </div>
+  <div class="text-center">
+    <a class="m-3" asp-controller="Home" asp-action="Index">Home</a>
+    <a class="m-3" asp-controller="Home" asp-action="NewDish">Add a Dish</a>
+  </div>
+  <table class="table border rounded">
+    <thead>
+      <tr>
+        <th scope="column">Name</th>
+        <th scope="column">Chef</th>
+        <th scope="column">Tastiness</th>
+        <th scope="column">Calories</th>
+        <th scope="column">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@Model.Name</td>
+        <td>@Model.Chef</td>
+        <td>@Model.Tastiness</td>
+        <td>@Model.Calories</td>
+        <td>@Model.Description</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <form asp-action="EditDish" asp-controller="Home" asp-route-DishId="@Model.DishId" method="get">
+        <input class="m-3 btn btn-warning" type="submit" value="Edit">
+    </form>
+    <form asp-action="DestroyDish" asp-controller="Home" asp-route-DishId="@Model.DishId" method="post">
+        <input class="m-3 btn btn-danger" type="submit" value="Delete">
+    </form>
+  </div>
+</div>
+
+
