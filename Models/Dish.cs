@@ -14,7 +14,7 @@ public class Dish
   public int? Tastiness { get; set; }
   [Required(ErrorMessage = "The Calories field is required.")]
   [Range(1, int.MaxValue, ErrorMessage = "Calories must be greater than 0.")]
-  public int Calories { get; set; }
+  public int? Calories { get; set; }
   [Required(ErrorMessage = "The Description field is required.")]
   public string Description { get; set; }
   public DateTime CreatedAt { get; set; } = DateTime.Now;

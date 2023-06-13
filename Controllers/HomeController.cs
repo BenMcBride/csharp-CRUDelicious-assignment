@@ -22,12 +22,14 @@ public class HomeController : Controller
     return View("AllDishes", allDishes);
   }
 
+  // redirect to New.cshtml
   [HttpGet("dishes/new")]
   public IActionResult NewDish()
   {
     return View("New");
   }
 
+  // Create new dish
   [HttpPost("dishes/create")]
   public IActionResult CreateDish(Dish dish)
   {
@@ -40,6 +42,7 @@ public class HomeController : Controller
     return RedirectToAction("Index");
   }
 
+  // Get one Dish
   [HttpGet("dishes/{DishId}")]
   public IActionResult ShowDish(int DishId)
   {
@@ -50,6 +53,8 @@ public class HomeController : Controller
     }
     return View("ViewDish", dish);
   }
+
+  // Redirect and auto-populate Edit Dish page
   [HttpGet("dishes/{DishId}/edit")]
   public IActionResult EditDish(int DishId)
   {
@@ -60,6 +65,8 @@ public class HomeController : Controller
     }
     return View("EditDish", dish);
   }
+
+  // Update the Dish in the DB
   [HttpPost("dishes/{DishId}/update")]
   public IActionResult UpdateDish(Dish newDish, int DishId)
   {
@@ -80,9 +87,10 @@ public class HomeController : Controller
     }
     else
     {
-      return View("EditDish", OldDish);
+      return EditDish(OldDish.DishId);
     }
   }
+  // Delete the Dish
   [HttpPost("dishes/{DishId}/destroy")]
   public IActionResult DestroyDish(int DishId)
   {
@@ -95,6 +103,7 @@ public class HomeController : Controller
     db.SaveChanges();
     return RedirectToAction("Index");
   }
+
   public IActionResult Privacy()
   {
     return View();
